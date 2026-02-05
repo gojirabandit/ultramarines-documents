@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meditations on the Codex Astartes - Legio Ultima</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ultramarine-blue: #0f3d8c;
+            --ultramarine-dark: #0a2a5e;
+            --ultramarine-darker: #061a3d;
+            --bone-white: #e8e0d0;
+            --gold: #c9a227;
+            --gold-light: #d4af37;
+            --parchment: #f4f0e6;
+            --black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --red-accent: #8b0000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', Georgia, serif;
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 50%, var(--ultramarine-darker) 100%);
+            color: var(--bone-white);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                var(--ultramarine-blue) 0%, 
+                var(--gold) 25%, 
+                var(--ultramarine-blue) 50%, 
+                var(--gold) 75%, 
+                var(--ultramarine-blue) 100%);
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, 
+                rgba(15, 61, 140, 0.3) 0%, 
+                rgba(10, 10, 10, 0.9) 100%);
+            border-bottom: 3px solid var(--ultramarine-blue);
+            position: relative;
+        }
+
+        header::after {
+            content: 'Ω';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: var(--gold);
+            background: var(--black);
+            padding: 0 20px;
+        }
+
+        .chapter-badge {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: url('https://raw.githubusercontent.com/GojiraBandit/ultramarines-bot-policies/main/legio_ultima.png') center center / cover no-repeat;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 30px rgba(15, 61, 140, 0.5);
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--bone-white);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .subtitle {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .last-updated {
+            font-style: italic;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 1.15rem;
+            color: var(--parchment);
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 25px;
+            background: rgba(15, 61, 140, 0.15);
+            border-left: 3px solid var(--ultramarine-blue);
+            border-right: 3px solid var(--ultramarine-blue);
+            font-style: italic;
+        }
+
+        /* Section styling */
+        .section {
+            margin: 50px 0;
+            padding: 30px;
+            background: linear-gradient(145deg, 
+                rgba(20, 20, 20, 0.95), 
+                rgba(10, 42, 94, 0.3));
+            border: 1px solid var(--ultramarine-blue);
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 30px;
+            right: 30px;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--gold) 20%, 
+                var(--gold) 80%, 
+                transparent);
+        }
+
+        .section-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: var(--ultramarine-blue);
+            color: var(--bone-white);
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            padding: 5px 15px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            border: 1px solid var(--gold);
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(201, 162, 39, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h2 .icon {
+            margin-right: 10px;
+        }
+
+        .codex-quote {
+            background: rgba(15, 61, 140, 0.2);
+            border-left: 3px solid var(--gold);
+            padding: 20px 25px;
+            margin: 0 0 25px 0;
+            font-style: italic;
+            color: var(--parchment);
+            font-size: 1.05rem;
+            line-height: 1.9;
+        }
+
+        .tactical-doctrine {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(15, 61, 140, 0.5);
+            border-left: 3px solid var(--ultramarine-blue);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .tactical-doctrine h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tactical-doctrine p {
+            color: #bbb;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .tactical-doctrine p:last-child {
+            margin-bottom: 0;
+        }
+
+        .key-points {
+            background: rgba(201, 162, 39, 0.1);
+            border: 1px solid rgba(201, 162, 39, 0.3);
+            padding: 15px 20px;
+            margin-top: 15px;
+            border-radius: 3px;
+        }
+
+        .key-points strong {
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .key-points p {
+            color: #ccc;
+            margin-top: 8px;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 60px;
+            border-top: 3px solid var(--ultramarine-blue);
+            background: linear-gradient(180deg, 
+                rgba(10, 10, 10, 0.9) 0%, 
+                rgba(15, 61, 140, 0.2) 100%);
+        }
+
+        .war-cry {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .footer-text {
+            color: #666;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+            
+            .section {
+                padding: 20px 15px;
+            }
+            
+            .codex-quote {
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="chapter-badge"></div>
+        <h1>Meditations on the Codex Astartes</h1>
+        <p class="subtitle">Legio Ultima Combat Doctrine</p>
+        <p class="last-updated">Compiled from the Teachings of Roboute Guilliman</p>
+    </header>
+
+    <div class="container">
+        <p class="intro">
+            "There is no greater weapon than the mind of the warrior who wields it. These are the sacred teachings of combat for Legio Ultima, drawn from the holy Codex Astartes itself."
+        </p>
+
+        <!-- Section 1: Devastator -->
+        <section class="section">
+            <span class="section-number">I</span>
+            <h2><span class="icon">🔥</span>Devastator</h2>
+            
+            <div class="codex-quote">
+                A Devastator's reach shall be without limit and his touch without mercy. Fire shall roar from his fingertips, but it shall consume him not. Thunder will roar when he calls, yet it will swallow him not. Let the Devastator squad be thy blazing wrath, bringing the light of the Emperor's justice to the darkest corners of the battlefield. Wherever he stands, that shall be his fortress of righteousness. He shall hold in his gift the fate of all who pass before his unblinking gaze. All shall fear him, and he shall fear no one.
+            </div>
+
+            <div class="tactical-doctrine">
+                <h3>Tactical Application</h3>
+                <p>A Devastator's role in battle is to lock down areas that the enemy can use with their line of sight. They are not responsible for assaulting enemy strongpoints or positions, nor should they be going into buildings to lay down fire into their strongpoints.</p>
+                <p>Their job is to contest and lock down the enemy's useful positions and prevent them from using them. Tacticals and Assaults should be leading the charges, while Devastators ensure the enemy cannot safely peek out to shoot them while they move into position.</p>
+                <p>One example of this is when sieging large buildings: Assaults should be on the catwalks or neighbouring buildings' roofs to prevent the enemy from peeking out from their roof or from coming out and assaulting one section of the assault early.</p>
+                <p>This role requires an understanding of line of sight and control of sectors by fire, not proximity.</p>
+                
+                <div class="key-points">
+                    <strong>Key Principle:</strong>
+                    <p>Devastators shouldn't be on the front line. They need to use their line of sight to suppress enemies and prevent enemy utility—control of area by fire, not by proximity.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Assault -->
+        <section class="section">
+            <span class="section-number">II</span>
+            <h2><span class="icon">⚔️</span>Assault</h2>
+            
+            <div class="codex-quote">
+                He shall descend upon the perfidious foe as an Angel of Judgement from on high. Let the jump pack be his wings, and the roar of its engines a hymn of retribution. Let the chainsword be his sceptre of decree, its harsh voice singing joyfully with each and every blow. With it shall the Assault Marine bring bloody retribution to the heretic, the traitor, and all alien aggressors who trespass on the Emperor's domain. So will the Assault Marine be the hunter of warlords and the slayer of kings. His armour shall run slick with the lifeblood of the vanquished, and all shall honour his name.
+            </div>
+
+            <div class="tactical-doctrine">
+                <h3>Tactical Application</h3>
+                <p>An Assault Marine's role in battle is to provide reconnaissance with their enhanced mobility, to storm enemy strategic locations, and to lead the assault on major pushes. They are not meant to stray and independently hunt down enemy units.</p>
+                <p>Their job is to firstly maintain strong squad cohesion such that when there is one Assault, there are five Assaults or more. Then, they will understand the enemy's disposition—understanding where their Devastator positions are, their healing and repair stations, and the weaknesses of their layout.</p>
+                <p>It is vital that they never stray from each other and maintain cohesion at all times. They must gain an understanding of analysing an enemy's layout, understanding when the timing is right to disrupt enemies' healing, when to assault their gun lines to open the way for the Tacticals and Devastators, and how to preserve themselves for the crucial moment.</p>
+                
+                <div class="key-points">
+                    <strong>Key Principle:</strong>
+                    <p>Assaults need to always stay together, wait for perfect timing to prevent the enemy from healing effectively, and minimise casualties until decisive moments.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Tactical -->
+        <section class="section">
+            <span class="section-number">III</span>
+            <h2><span class="icon">🛡️</span>Tactical</h2>
+            
+            <div class="codex-quote">
+                Of the Tactical Space Marine, bedrock of his Chapter and paragon to his brothers, I shall tell thee. He shall be steeped in the lore of battle and schooled in all manner of weapon and strategy. With combat blade, boltgun, and grenade he shall assail the foe. But these are mere tools: a Tactical Space Marine's true weapons are his courage, his wits, and his dedication to his brothers. He will bring his foe to battle in a manner and time of his choosing, never himself caught unready or ill-prepared for the task at hand. In defence he shall be stalwart as the mountain, a bulwark stood firm against the enemies of Man. In attack he shall strike with the wrath of the Immortal Emperor, felling the foe without mercy, remorse, or fear.
+            </div>
+
+            <div class="tactical-doctrine">
+                <h3>Tactical Application</h3>
+                <p>A Tactical Marine's role is to provide a frontline for the company, determining where the company's control begins and ends. They must form a line that is immovable—for commanders to launch devastating assaults from, for commanders to retreat into to regroup.</p>
+                <p>They must minimise casualties and damage sustained such that they do not take damage at a faster rate than can be healed. They must understand when to engage the enemy and when to preserve themselves such that the frontline can be maintained.</p>
+                <p>There should never be more than one quarter of the battleline (the Tactical Marines) away from where the designated frontline is. A problem commonly encountered is that Tactical Marines are overzealous or get "bored" and engage the enemy where they shouldn't, compromising the integrity of the frontline because they all sit waiting for heals.</p>
+                <p>It is in this role that Tactical Marines must have the most honed and sharpened tactical sense. They must each become commanders of themselves and decide when to engage and when to hold such that their backlines are never vulnerable.</p>
+                
+                <div class="key-points">
+                    <strong>Key Principle:</strong>
+                    <p>Tacticals need to take less damage than they deal and ensure that they are healthy enough to maintain a strong frontline so that enemies can't just run through them.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Force Commanding -->
+        <section class="section">
+            <span class="section-number">IV</span>
+            <h2><span class="icon">👑</span>Force Commanding</h2>
+            
+            <div class="codex-quote">
+                A Captain leads from the front. By his example shall his men know what it is to be of the Adeptus Astartes, and from his teachings shall they learn the trade of battle in the Emperor's name. No ordinary man can a Captain be, for many are the paths to victory and he must be master of them all. His very being shall be an extension of the Emperor's work. With every strike of his sword, with every word of his speech, does he reaffirm the ideals of our honoured master. He will vanquish darkness and heresy with every thought, word, and deed. So shall his coming be a sign of deliverance to the dutiful, and a herald of dismay to all traitors. No living man shall stay his wrath.
+            </div>
+
+            <div class="tactical-doctrine">
+                <h3>Tactical Application</h3>
+                <p>As a Force Commander, your role is to constantly be in understanding of the forces in play—yours and the enemy's. You must constantly be appraised of the status and taskings of each squad under your command. You must ensure that your forces are constantly fulfilling their role.</p>
+                <p>You must understand the disposition of the enemy at all times. You must see the enemy's moves in the time they are setting it up, and before they carry it out. You must understand what adjustments must be made.</p>
+                <p>You must use your mind as your greatest weapon—you shall wield and not be wielded. You must always have a plan and fill it with detail, with taskings for each squad, and yet leave space in the canvas of your plan to allow your sergeants to decide how best to carry out your orders.</p>
+                
+                <div class="key-points">
+                    <strong>Key Principle:</strong>
+                    <p>Understand yourself and your enemy. Ensure your men are always following orders and doing their best. Remind them to use abilities, remind Tacticals not to peek randomly, remind people not to blob up on healers and to fill the frontline while waiting for heals if they're not urgently low. Set the standards for what is low or not. Remind Assaults to preserve themselves. Remind Devastators which positions to shut down and focus fire on.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Leading in Battle -->
+        <section class="section">
+            <span class="section-number">V</span>
+            <h2><span class="icon">⚡</span>Leading in Battle</h2>
+            
+            <div class="codex-quote">
+                As a commander, your tools and devices shall be myriad, yet the wise man knows that battles are won by flesh, not the machine. Flesh can learn, whilst the machine must be forever instructed. Flesh knows loyalty to its brothers and veneration of its Emperor, whilst the machine knows not these things. Whenever the day is darkest and victory in doubt, look not to the machine for aid, but to your Battle-Brothers. The machine can only bring you victory if you tell it how such a thing can be done. Your brothers will walk through fire, they will stride through the most terrible carnage at a single word from your lips, and they will bring you victory simply because you ask it of them.
+            </div>
+
+            <div class="tactical-doctrine">
+                <h3>Tactical Application</h3>
+                <p>As sergeants leading squads in battle, you must understand the roles of all three classes as written before. Then you must write the role of your squad into your heart. Thus you can understand what those around you must do so that you can do what you should, then you can do what you should with utmost excellence with your familiarity.</p>
+                <p>To ensure your squads are working in tandem, you must always communicate what you are doing with other squads and your Force Commander. Communication between the parts of the body is essential to ensuring the body works towards one goal.</p>
+                <p>Additionally, you should always be appraised of all brothers' status in your squad. You should always know where most, if not all, of your squad are. You should know what they are doing. You should know what is in their mind. When you understand the disposition of your squad physically and mentally, then you will know how best to issue orders such that they understand their roles.</p>
+                <p>It is vital to maintain control and discipline of your squad in the heat of battle.</p>
+                
+                <div class="key-points">
+                    <strong>Key Principle:</strong>
+                    <p>Speak in TeamSpeak or voice calls often whenever you do anything. Always know where your squadmates are so you can keep your squad together.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p class="war-cry">Courage and Honour!</p>
+        <p class="footer-text">For the Emperor. For Legio Ultima. For Glory.</p>
+    </footer>
+</body>
+</html>
